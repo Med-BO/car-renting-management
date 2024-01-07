@@ -246,5 +246,15 @@ def return_car():
 
     return jsonify({'message': 'Car returned successfully'}), 200
 
+@app.route('/api/voiture-stats', methods=['GET'])
+def get_voiture_stats():
+    voiture_count = Voiture.query.count()
+    total_kilometrage = db.session.query(db.func.sum(Voiture.kilometrage)).scalar()
+
+    return jsonify({
+        'voiture_count': voiture_count,
+        'total_kilometrage': total_kilometrage if total_kilometrage is not None else 0
+    })
+
 if __name__ == '__main__':
     app.run(debug=True)

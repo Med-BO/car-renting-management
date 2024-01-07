@@ -104,5 +104,65 @@ def delete_voiture(voiture_id):
 
     return jsonify({'message': 'Voiture deleted successfully'}), 200
 
+@app.route('/api/locataires', methods=['GET'])
+def get_all_locataires():
+    locataires = Locataire.query.all()
+
+    locataire_list = []
+    for locataire in locataires:
+        locataire_data = {
+            'id_loc': locataire.id_loc,
+            'nom': locataire.nom,
+            'prenom': locataire.prenom,
+            'adresse': locataire.adresse
+        }
+        locataire_list.append(locataire_data)
+
+    return jsonify({'locataires': locataire_list})
+
+@app.route('/api/locataire', methods=['POST'])
+def add_locataire():
+    data = request.get_json()
+
+    new_locataire = Locataire(
+        nom=data['nom'],
+        prenom=data['prenom'],
+        adresse=data['adresse']
+    )
+
+    db.session.add(new_locataire)
+    db.session.commit()
+
+    return jsonify({'message': 'Locataire added successfully'}), 201
+
+@app.route('/api/locataire/<int:locataire_id>', methods=['PUT'])
+def update_locataire(locataire_id):
+    locataire = Locataire.query.get(locataire_id)
+
+    if locataire is None:
+        return jsonify({'error': 'Locataire not found'}), 404
+
+    data = request.get_json()
+
+    locataire.nom = data.get('nom', locataire.nom)
+    locataire.prenom = data.get('prenom', locataire.prenom)
+    locataire.adresse = data.get('adresse', locataire.adresse)
+
+    db.session.commit()
+
+    return jsonify({'message': 'Locataire updated successfully'}), 200
+
+@app.route('/api/locataire/<int:locataire_id>', methods=['DELETE'])
+def delete_locataire(locataire_id):
+    locataire = Locataire.query.get(locataire_id)
+
+    if locataire is None:
+        return jsonify({'error': 'Locataire not found'}), 404
+
+    db.session.delete(locataire)
+    db.session.commit()
+
+    return jsonify({'message': 'Locataire deleted successfully'}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import or_
 
 # App configuration
 app = Flask(__name__)
@@ -163,6 +164,31 @@ def delete_locataire(locataire_id):
     db.session.commit()
 
     return jsonify({'message': 'Locataire deleted successfully'}), 200
+
+@app.route('/api/locataire-search', methods=['GET'])
+# q is a query parameter that will searched in the ID, nom and prenom fields
+def search_locataires():
+    search_text = request.args.get('q', '')
+
+    locataires = Locataire.query.filter(
+        or_(
+            Locataire.id_loc.like(f"%{search_text}%"),
+            Locataire.nom.like(f"%{search_text}%"),
+            Locataire.prenom.like(f"%{search_text}%")
+        )
+    ).all()
+
+    locataire_list = []
+    for locataire in locataires:
+        locataire_data = {
+            'id_loc': locataire.id_loc,
+            'nom': locataire.nom,
+            'prenom': locataire.prenom,
+            'adresse': locataire.adresse
+        }
+        locataire_list.append(locataire_data)
+
+    return jsonify({'locataires': locataire_list})
 
 if __name__ == '__main__':
     app.run(debug=True)

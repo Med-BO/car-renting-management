@@ -190,5 +190,61 @@ def search_locataires():
 
     return jsonify({'locataires': locataire_list})
 
+@app.route('/api/locataires-ordered', methods=['GET'])
+def get_all_locataires_ordered():
+    locataires = Locataire.query.order_by(Locataire.nom).all()
+
+    locataire_list = []
+    for locataire in locataires:
+        locataire_data = {
+            'id_loc': locataire.id_loc,
+            'nom': locataire.nom,
+            'prenom': locataire.prenom,
+            'adresse': locataire.adresse
+        }
+        locataire_list.append(locataire_data)
+
+    return jsonify({'locataires': locataire_list})
+
+@app.route('/api/rent-car', methods=['POST'])
+def rent_car():
+    data = request.get_json()
+
+    locataire_id = data.get('locataire_id')
+    voiture_id = data.get('voiture_id')
+
+    locataire = Locataire.query.get(locataire_id)
+    voiture = Voiture.query.get(voiture_id)
+
+    if locataire is None or voiture is None:
+        return jsonify({'error': 'Locataire or Voiture not found'}), 404
+
+    if voiture.id_locataire is not None:
+        return jsonify({'error': 'Voiture is already rented'}), 400
+
+    voiture.id_locataire = locataire.id_loc
+    db.session.commit()
+
+    return jsonify({'message': f'Car rented successfully by {locataire.nom} {locataire.prenom}'}), 200
+
+@app.route('/api/return-car', methods=['POST'])
+def return_car():
+    data = request.get_json()
+
+    voiture_id = data.get('voiture_id')
+
+    voiture = Voiture.query.get(voiture_id)
+
+    if voiture is None:
+        return jsonify({'error': 'Voiture not found'}), 404
+
+    if voiture.id_locataire is None:
+        return jsonify({'error': 'Voiture is not currently rented'}), 400
+
+    voiture.id_locataire = None
+    db.session.commit()
+
+    return jsonify({'message': 'Car returned successfully'}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)

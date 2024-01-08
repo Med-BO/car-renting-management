@@ -6,15 +6,15 @@ import { Voiture } from '../models/voiture.model';
   providedIn: 'root'
 })
 export class VoitureService {
-  BACKEND_API_LINK = 'http://localhost:8080/api/voiture';
+  BACKEND_API_LINK = 'http://localhost:5000/api/voiture';
   constructor(private http: HttpClient) { }
 
   getAllVoitures() {
     return this.http.get(`${this.BACKEND_API_LINK}s`);
   }
 
-  addVoiture(voiture: Voiture) {
-    return this.http.post(`${this.BACKEND_API_LINK}`, voiture);
+  addVoiture(payload: any) {
+    return this.http.post(`${this.BACKEND_API_LINK}`, payload);
   }
 
   updateVoiture(voitureId: number, payload: any) {

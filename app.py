@@ -2,9 +2,11 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import or_
+from flask_cors import CORS
 
 # App configuration
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@localhost/car_renting_db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

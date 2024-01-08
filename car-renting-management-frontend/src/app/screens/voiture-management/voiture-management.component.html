@@ -1,29 +1,156 @@
 <div class="main-container">
     <div class="page-content">
         <div class="nav-bar">
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('listAll')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>
                  <span>List All</span>
             </div>
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('add')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                  <span>Add Car</span>
             </div>
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('modify')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
                  <span>Modify Car</span>
             </div>
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('delete')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
                  <span>Delete Car</span>
             </div>
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('stats')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="42" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"/></svg>
                  <span>Statistics</span>
             </div>
         </div>
         <div class="content-panel">
-
+            <div class="loader-container" *ngIf="loader">
+                <span class="loader"></span>
+            </div>
+            <div class="voitures-container" *ngIf="!loader && selectedOption == 'listAll'">
+                <div class="no-data" *ngIf="voitures.length === 0">
+                    <h4>No cars available in the database!</h4>
+                </div>
+                <div class="voiture-container" *ngFor="let voiture of voitures">
+                    <div><strong>Brand: </strong>{{ voiture.marque }}</div>
+                    <div><strong>Model: </strong>{{ voiture.modele }}</div>
+                    <div><strong>Registration Number: </strong>{{ voiture.num_imma }}</div>
+                    <div><strong>Kilometers: </strong>{{ voiture.kilometrage }} KM</div>
+                    <div><strong>Renting Price: </strong>{{ voiture.prix_location }} DT</div>
+                    <div>
+                        <strong>Status: </strong>
+                        <span *ngIf="voiture.etat == 1" style="color: green;">Disponible</span>
+                        <span *ngIf="voiture.etat == 0" style="color: red;">Louée</span>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <!-- Add voiture -->
+            <div class="add-form-container" *ngIf="!loader && selectedOption == 'add'">
+                <div class="form-row">
+                    <div class="form-element">
+                        <label for="brand">Brand</label>
+                        <input type="text" name="brand" id="brand" [(ngModel)]="carToAdd.marque">
+                    </div>
+                    <div class="form-element">
+                        <label for="model">Model</label>
+                        <input type="text" name="model" id="model" [(ngModel)]="carToAdd.modele">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-element">
+                        <label for="reg_number">Registration Number</label>
+                        <input type="number" name="reg_number" id="reg_number" [(ngModel)]="carToAdd.num_imma">
+                    </div>
+                    <div class="form-element">
+                        <label for="kilometrage">Kilometers</label>
+                        <input type="number" name="kilometrage" id="kilometrage" [(ngModel)]="carToAdd.kilometrage">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-element">
+                        <label for="prix">Renting Price</label>
+                        <input type="number" name="prix" id="prix" [(ngModel)]="carToAdd.prix_location">
+                    </div>
+                    <div class="form-element">
+                        <label for=""></label><br>
+                        <button class="submit-btn" (click)="addCar()">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modify voiture -->
+            <div class="add-form-container" *ngIf="!loader && selectedOption == 'modify'">
+                <h3>Select a car to modify:</h3>
+                <select name="carToModify" id="carToModify" [(ngModel)]="carToModifyId" (change)="setCarToModify()">
+                    <option value="" disabled selected>Select a car</option>
+                    <option *ngFor="let voiture of voitures" [ngValue]="voiture.id">{{ voiture.marque }} {{ voiture.modele }}</option>
+                </select>
+                <div class="inputs-container" *ngIf="carToModifyId != 0">
+                    <div class="form-row">
+                        <div class="form-element">
+                            <label for="brand-modify">Brand</label>
+                            <input type="text" name="brand-modify" id="brand-modify" [(ngModel)]="carToModify.marque">
+                        </div>
+                        <div class="form-element">
+                            <label for="model-modify">Model</label>
+                            <input type="text" name="model-modify" id="model-modify" [(ngModel)]="carToModify.modele">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-element">
+                            <label for="reg_number-modify">Registration Number</label>
+                            <input type="number" name="reg_number-modify" id="reg_number-modify" [(ngModel)]="carToModify.num_imma">
+                        </div>
+                        <div class="form-element">
+                            <label for="kilometrage-modify">Kilometers</label>
+                            <input type="number" name="kilometrage-modify" id="kilometrage-modify" [(ngModel)]="carToModify.kilometrage">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-element">
+                            <label for="prix-modify">Renting Price</label>
+                            <input type="number" name="prix-modify" id="prix-modify" [(ngModel)]="carToModify.prix_location">
+                        </div>
+                        <div class="form-element">
+                            <label for=""></label><br>
+                            <button class="submit-btn" (click)="modifyCar()">
+                               Modify
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Delete voiture -->
+            <div class="voitures-container" *ngIf="!loader && selectedOption == 'delete'">
+                <div class="no-data" *ngIf="voitures.length === 0">
+                    <h4>No cars available in the database!</h4>
+                </div>
+                <div  *ngFor="let voiture of voitures">
+                    <div class="deletetion-voiture-container">
+                        <div class="car-infos">
+                            <div><strong>Brand: </strong>{{ voiture.marque }}</div>
+                            <div><strong>Model: </strong>{{ voiture.modele }}</div>
+                            <div><strong>Registration Number: </strong>{{ voiture.num_imma }}</div>
+                            <div><strong>Kilometers: </strong>{{ voiture.kilometrage }} KM</div>
+                            <div><strong>Renting Price: </strong>{{ voiture.prix_location }} DT</div>
+                            <div>
+                                <strong>Status: </strong>
+                                <span *ngIf="voiture.etat == 1" style="color: green;">Disponible</span>
+                                <span *ngIf="voiture.etat == 0" style="color: red;">Louée</span>
+                            </div>
+                        </div>
+                        <div class="delete-btn-container">
+                            <button class="delete-btn submit-btn" (click)="deleteCar(voiture.id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="white" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
         </div>
     </div>
 </div>

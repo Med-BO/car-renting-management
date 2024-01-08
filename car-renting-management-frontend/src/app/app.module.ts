@@ -8,6 +8,7 @@ import { VoitureManagementComponent } from './screens/voiture-management/voiture
 import { LocataireManagementComponent } from './screens/locataire-management/locataire-management.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RentalsManagementComponent } from './screens/rentals-management/rentals-management.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { RentalsManagementComponent } from './screens/rentals-management/rentals
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -208,6 +208,27 @@ def get_all_locataires_ordered():
 
     return jsonify({'locataires': locataire_list})
 
+@app.route('/api/all-rentals', methods=['GET'])
+def get_all_rentals():
+    voitures = Voiture.query.all()
+
+    rentals_data = []
+    for voiture in voitures:
+        if voiture.id_locataire is not None:
+            locataire = Locataire.query.get(voiture.id_locataire)
+            rental_data = {
+                'nom': locataire.nom,
+                'prenom': locataire.prenom,
+                'marque': voiture.marque,
+                'modele': voiture.modele,
+                'num_imma': voiture.num_imma,
+                'voiture_id': voiture.id,
+                'prix_location': voiture.prix_location
+            }
+            rentals_data.append(rental_data)
+
+    return jsonify({'rentals': rentals_data})
+
 @app.route('/api/rent-car', methods=['POST'])
 def rent_car():
     data = request.get_json()

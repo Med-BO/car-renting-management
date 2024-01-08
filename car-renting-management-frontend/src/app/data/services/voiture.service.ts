@@ -28,4 +28,12 @@ export class VoitureService {
   getStatistics() {
     return this.http.get(`${this.BACKEND_API_LINK}-stats`);
   }
+
+  getAllRentals() {
+    return this.http.get('http://127.0.0.1:5000/api/all-rentals');
+  }
+
+  rentCar(payload: any) {
+    return this.http.post('http://127.0.0.1:5000/api/rent-car', payload);
+  }
 }

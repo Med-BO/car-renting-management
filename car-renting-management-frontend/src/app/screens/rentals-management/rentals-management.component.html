@@ -1,11 +1,11 @@
 <div class="main-container">
     <div class="page-content">
         <div class="nav-bar">
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('listAll')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>
                  <span>List All</span>
             </div>
-            <div class="menu-option">
+            <div class="menu-option" (click)="selectOption('rent')">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                  <span>Rent Car</span>
             </div>
@@ -15,7 +15,38 @@
             </div>
         </div>
         <div class="content-panel">
-            
+            <div class="loader-container" *ngIf="loader">
+                <span class="loader"></span>
+            </div>
+            <div class="voitures-container" *ngIf="!loader && selectedOption == 'listAll'">
+                <div class="no-data" *ngIf="rentals.length === 0">
+                    <h4>No cars are currently rented!</h4>
+                </div>
+                <div class="voiture-container" *ngFor="let rental of rentals">
+                    <h3>Car :</h3>
+                    <div><strong>Registration Number: </strong>{{ rental.num_imma }}</div>
+                    <div><strong>Brand: </strong>{{ rental.marque }}</div>
+                    <div><strong>Model: </strong>{{ rental.modele }}</div>
+                    <h3>Customer :</h3>
+                    <div><strong>Customer: </strong>{{ rental.nom + " " + rental.prenom }}</div>
+                    <div><strong>Renting Price: </strong>{{ rental.prix_location }} DT</div>
+                    <hr>
+                </div>
+            </div>
+            <!-- Rent Car -->
+            <div class="rent-car-container" *ngIf="!loader && selectedOption == 'rent'">
+                <label for="car">Select a car to rent  </label>
+                <select name="car" id="car" [(ngModel)]="selectedCarToRent">
+                    <option value="" disabled selected>Select a car</option>
+                    <option *ngFor="let car of availableCars" value="{{ car.id }}">{{ car.marque + " " + car.modele }}</option>
+                </select><br>
+                <label for="customer">Select a customer  </label>
+                <select name="customer" id="customer" [(ngModel)]="selectedCustomerToRent">
+                    <option value="" disabled selected>Select a customer</option>
+                    <option *ngFor="let customer of customers" value="{{ customer.id_loc }}">{{ customer.nom + " " + customer.prenom }}</option>
+                </select><br><br>
+                <button class="submit-btn" (click)="rentCar()">Rent</button>
+            </div>
         </div>
     </div>
 </div>

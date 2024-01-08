@@ -246,6 +246,7 @@ def rent_car():
         return jsonify({'error': 'Voiture is already rented'}), 400
 
     voiture.id_locataire = locataire.id_loc
+    voiture.etat = 0
     db.session.commit()
 
     return jsonify({'message': f'Car rented successfully by {locataire.nom} {locataire.prenom}'}), 200
@@ -265,6 +266,7 @@ def return_car():
         return jsonify({'error': 'Voiture is not currently rented'}), 400
 
     voiture.id_locataire = None
+    voiture.etat = 1
     db.session.commit()
 
     return jsonify({'message': 'Car returned successfully'}), 200

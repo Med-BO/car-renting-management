@@ -78,4 +78,12 @@ export class RentalsManagementComponent implements OnInit {
       this.getAvailableCars();
     });
   }
+
+  returnCar(voitureId: number) {
+    this.loader = true;
+    this.voituresService.returnCar(voitureId).subscribe((res: any) => {
+      this.getAllRentals();
+      this.getAvailableCars();
+    });
+  }
 }

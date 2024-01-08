@@ -94,3 +94,10 @@
         background-color: #B2A59B;
     }
 }
+
+.return-car-voiture-container {
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

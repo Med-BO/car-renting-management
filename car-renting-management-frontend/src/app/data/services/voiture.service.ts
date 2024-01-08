@@ -36,4 +36,8 @@ export class VoitureService {
   rentCar(payload: any) {
     return this.http.post('http://127.0.0.1:5000/api/rent-car', payload);
   }
+
+  returnCar(voitureId: number) {
+    return this.http.post('http://127.0.0.1:5000/api/return-car', { 'voiture_id': voitureId });
+  }
 }

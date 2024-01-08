@@ -27,6 +27,8 @@ export class VoitureManagementComponent implements OnInit {
     kilometrage: 0,
     prix_location: 0
   }
+  totalCars: number = 0;
+  totalKilometers: number = 0;
   constructor(private voitureService: VoitureService) { }
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class VoitureManagementComponent implements OnInit {
         this.loader = false;
         break;
       case 'stats':
-        console.log('stats');
+        this.getStats();
         break;
       default:
         console.log('default');
@@ -95,6 +97,14 @@ export class VoitureManagementComponent implements OnInit {
       this.loader = false;
       // filter the deleted car from the list
       this.voitures = this.voitures.filter((voiture: Voiture) => voiture.id !== id);
+    });
+  }
+
+  getStats() {
+    this.voitureService.getStatistics().subscribe((data: any) => {
+      this.loader = false;
+      this.totalCars = data['voiture_count'];
+      this.totalKilometers = data['total_kilometrage'];
     });
   }
 }

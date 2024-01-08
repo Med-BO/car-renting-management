@@ -24,4 +24,8 @@ export class VoitureService {
   deleteVoiture(voitureId: number) {
     return this.http.delete(`${this.BACKEND_API_LINK}/${voitureId}`);
   }
+
+  getStatistics() {
+    return this.http.get(`${this.BACKEND_API_LINK}-stats`);
+  }
 }

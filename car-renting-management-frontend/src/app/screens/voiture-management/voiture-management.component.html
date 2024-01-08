@@ -151,6 +151,15 @@
                     <hr>
                 </div>
             </div>
+            <!-- Delete voiture -->
+            <div class="voitures-container" *ngIf="!loader && selectedOption == 'stats'">
+                <div>
+                    <h3>Total Cars: </h3><span>{{ totalCars}}</span>
+                </div>
+                <div>
+                    <h3>Total Kilometers: </h3><span>{{ totalKilometers }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

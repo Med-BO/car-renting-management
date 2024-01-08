@@ -7,13 +7,15 @@ import { MainMenuComponent } from './screens/main-menu/main-menu.component';
 import { VoitureManagementComponent } from './screens/voiture-management/voiture-management.component';
 import { LocataireManagementComponent } from './screens/locataire-management/locataire-management.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RentalsManagementComponent } from './screens/rentals-management/rentals-management.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainMenuComponent,
     VoitureManagementComponent,
-    LocataireManagementComponent
+    LocataireManagementComponent,
+    RentalsManagementComponent
   ],
   imports: [
     BrowserModule,

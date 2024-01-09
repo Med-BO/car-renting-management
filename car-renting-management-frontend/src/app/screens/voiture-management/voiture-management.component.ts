@@ -80,7 +80,6 @@ export class VoitureManagementComponent implements OnInit {
 
   setCarToModify() {
     this.carToModify = this.voitures.find((voiture: Voiture) => voiture.id === this.carToModifyId);
-    console.log(this.carToModify);
   }
 
   modifyCar() {

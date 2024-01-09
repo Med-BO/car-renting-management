@@ -39,6 +39,85 @@
                     <hr>
                 </div>
             </div>
+            <!-- Add locataire -->
+            <div class="add-form-container" *ngIf="!loader && selectedOption == 'add'">
+                <div class="form-row">
+                    <div class="form-element">
+                        <label for="brand">Customer Firstname</label>
+                        <input type="text" name="brand" id="brand" [(ngModel)]="customerToAdd.prenom">
+                    </div>
+                    <div class="form-element">
+                        <label for="model">Customer Lastname</label>
+                        <input type="text" name="model" id="model" [(ngModel)]="customerToAdd.nom">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-element">
+                        <label for="reg_number">Customer Address</label>
+                        <input type="text" name="reg_number" id="reg_number" [(ngModel)]="customerToAdd.adresse">
+                    </div>
+                    <div class="form-element">
+                        <label for=""></label><br>
+                        <button class="submit-btn" (click)="addCustomer()">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modify locataire -->
+            <div class="add-form-container" *ngIf="!loader && selectedOption == 'modify'">
+                <h3>Select a customer to modify:</h3>
+                <select name="locataireToModify" id="locataireToModify" [(ngModel)]="customerToModifyId" (change)="setCustomerToModify()">
+                    <option value="" disabled selected>Select a car</option>
+                    <option *ngFor="let customer of customers" [ngValue]="customer.id_loc">{{ customer.prenom }} {{ customer.nom }}</option>
+                </select>
+                <div class="inputs-container" *ngIf="customerToModifyId != 0">
+                    <div class="form-row">
+                        <div class="form-element">
+                            <label for="brand-modify">Customer First Name</label>
+                            <input type="text" name="brand-modify" id="brand-modify" [(ngModel)]="customerToModify.prenom">
+                        </div>
+                        <div class="form-element">
+                            <label for="model-modify">Customer Last Name</label>
+                            <input type="text" name="model-modify" id="model-modify" [(ngModel)]="customerToModify.nom">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-element">
+                            <label for="reg_number-modify">Customer Address</label>
+                            <input type="text" name="reg_number-modify" id="reg_number-modify" [(ngModel)]="customerToModify.adresse">
+                        </div>
+                        <div class="form-element">
+                            <label for=""></label><br>
+                            <button class="submit-btn" (click)="modifyCustomer()">
+                               Modify
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Delete locataire -->
+            <div class="voitures-container" *ngIf="!loader && selectedOption == 'delete'">
+                <div class="no-data" *ngIf="customers.length === 0">
+                    <h4>No customers available in the database!</h4>
+                </div>
+                <div *ngFor="let customer of customers">
+                    <div class="voiture-container">
+                        <div class="car-infos">
+                            <div><strong>Full Name: </strong>{{ customer.prenom + " " + customer.nom }}</div>
+                            <div><strong>Address: </strong>{{ customer.adresse }}</div>
+                        </div>
+                        <div class="delete-btn-container">
+                            <button class="delete-btn submit-btn" (click)="deleteCustomer(customer.id_loc)">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+                                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" fill="white" />
+                                </svg>
+                            </button>
+                        </div>  
+                    </div>
+                    <hr>
+                </div>
+            </div>
         </div>
     </div>
 </div>

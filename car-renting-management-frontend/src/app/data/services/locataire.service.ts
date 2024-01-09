@@ -18,4 +18,16 @@ export class LocataireService {
   
     return this.http.get(`${this.BACKEND_API_LINK}-search?${queryString}`);
   }
+
+  addLocataire(payload: any) {
+    return this.http.post(this.BACKEND_API_LINK, payload);
+  }
+
+  updateLocataire(customerId: number, payload: any) {
+    return this.http.put(this.BACKEND_API_LINK + "/" + customerId, payload);
+  }
+
+  deleteLocataire(customerId: number) {
+    return this.http.delete(this.BACKEND_API_LINK + "/" + customerId);
+  }
 }

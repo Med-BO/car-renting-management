@@ -81,4 +81,40 @@ export class LocataireManagementComponent implements OnInit {
       this.getAllCustomers();
     }
   }
+
+  addCustomer() {
+    this.loader = true;
+    this.locatairesService.addLocataire(this.customerToAdd).subscribe((data) => {
+      this.customerToAdd = {
+        nom: '',
+        prenom: '',
+        adresse: ''
+      }
+      this.getAllCustomers();
+    });
+  }
+
+  setCustomerToModify() {
+    const foundCustomerToModify = this.customers.find((customer: Locataire) => customer.id_loc === this.customerToModifyId);
+    this.customerToModify.nom = foundCustomerToModify?.nom;
+    this.customerToModify.prenom = foundCustomerToModify?.prenom;
+    this.customerToModify.adresse = foundCustomerToModify?.adresse;
+  }
+
+  modifyCustomer() {
+    this.loader = true;
+    this.locatairesService.updateLocataire(this.customerToModifyId, this.customerToModify).subscribe((data: any) => {
+      this.loader = false;
+      this.selectOption('listAll');
+    });
+  }
+
+  deleteCustomer(idToDelete: number) {
+    this.loader = true;
+    this.locatairesService.deleteLocataire(idToDelete).subscribe((data: any) => {
+      this.loader = false;
+      // filter the deleted car from the list
+      this.customers = this.customers.filter((customer: Locataire) => customer.id_loc !== idToDelete);
+    });
+  }
 }

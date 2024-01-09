@@ -11,4 +11,11 @@ export class LocataireService {
   getAllCustomers() {
     return this.http.get(`${this.BACKEND_API_LINK}s`);
   }
+
+  searchForCustomer(searchText: string) {
+    const queryParams = { q: searchText };
+    const queryString = new URLSearchParams(queryParams).toString();
+  
+    return this.http.get(`${this.BACKEND_API_LINK}-search?${queryString}`);
+  }
 }

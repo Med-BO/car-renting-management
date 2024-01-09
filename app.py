@@ -194,7 +194,7 @@ def search_locataires():
 
 @app.route('/api/locataires-ordered', methods=['GET'])
 def get_all_locataires_ordered():
-    locataires = Locataire.query.order_by(Locataire.nom).all()
+    locataires = Locataire.query.order_by(Locataire.prenom).all()
 
     locataire_list = []
     for locataire in locataires:

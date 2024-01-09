@@ -26,10 +26,14 @@
                 <span class="loader"></span>
             </div>
             <div class="voitures-container" *ngIf="!loader && selectedOption == 'listAll'">
-                <div class="search-btn-container">
-                    <input type="text" placeholder="Enter name or ID..." [(ngModel)]="searchValue" (keyup)="onSearchFieldChange()">
-                    <button [disabled]="searchValue === ''" (click)="searchForCustomer()">Search</button>
+                <div class="action-btns">
+                    <div class="search-btn-container">
+                        <input type="text" placeholder="Enter name or ID..." [(ngModel)]="searchValue" (keyup)="onSearchFieldChange()">
+                        <button [disabled]="searchValue === ''" (click)="searchForCustomer()">Search</button>
+                    </div>
+                    <button (click)="getAllCustomersSortedAlphabetically()">Sort Alphabetically</button>
                 </div>
+                
                 <div class="no-data" *ngIf="customers.length === 0">
                     <h4>No customers available in the database!</h4>
                 </div>

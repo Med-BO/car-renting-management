@@ -30,4 +30,8 @@ export class LocataireService {
   deleteLocataire(customerId: number) {
     return this.http.delete(this.BACKEND_API_LINK + "/" + customerId);
   }
+
+  sortLocatairesAlphabetically() {
+    return this.http.get(`${this.BACKEND_API_LINK}s-ordered`);
+  }
 }

@@ -117,4 +117,15 @@ export class LocataireManagementComponent implements OnInit {
       this.customers = this.customers.filter((customer: Locataire) => customer.id_loc !== idToDelete);
     });
   }
+
+  getAllCustomersSortedAlphabetically() {
+    this.loader = true;
+    this.locatairesService.sortLocatairesAlphabetically().subscribe((data: any) => {
+      this.customers = [];
+      data['locataires'].forEach((customer: Locataire) => {
+        this.customers.push(customer);
+      });
+      this.loader = false;
+    });
+  }
 }
